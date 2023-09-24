@@ -257,6 +257,7 @@ resources:
         BucketName: ${self:provider.environment.STATIC_SITE_S3_BUCKET}
         WebsiteConfiguration:
           IndexDocument: index.html
+          ErrorDocument: index.html
         PublicAccessBlockConfiguration:
           BlockPublicAcls: false
           BlockPublicPolicy: false
