@@ -12,6 +12,8 @@
   },
   "exclude": [
     "node_modules",
-    "./src/frontend"
+    "./src/frontend",
+    "**/*.test.ts",
+    "**/test/mock/*.ts"
   ]
 }

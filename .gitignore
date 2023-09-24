@@ -13,4 +13,8 @@ jspm_packages
 # Local DynamoDb
 .dynamodb
 
+# testing
+/coverage
+**/*/coverage
+
 .temp
