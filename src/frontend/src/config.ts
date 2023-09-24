@@ -1,6 +1,6 @@
 // TODO: Once your application is deployed, copy an API id here so that the frontend could interact with it
 const apiId = 'hois2sns9l';
-const authCallbackDomainAndPort = 'thienphuoc1990-serverless-fs-todo-app-static-site-dev.s3-website-us-east-1.amazonaws.com';
+const authCallbackDomainAndPort = 'localhost:3000';
 export const apiEndpoint = `https://${apiId}.execute-api.us-east-1.amazonaws.com/dev`
 
 export const authConfig = {
