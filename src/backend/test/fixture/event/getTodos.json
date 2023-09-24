@@ -1,0 +1,157 @@
+{
+    "resource": "/todos",
+    "path": "/todos",
+    "httpMethod": "GET",
+    "headers": {
+        "Accept": "application/json, text/plain, */*",
+        "Accept-Encoding": "gzip, deflate, br",
+        "Accept-Language": "en-US,en;q=0.9",
+        "Authorization": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Im92TEtGQTA0YXk2S1VBd2EyQ2dFayJ9.eyJpc3MiOiJodHRwczovL2Rldi01ZW55d2hoYi51cy5hdXRoMC5jb20vIiwiYXVkIjoiMHFra0NRQm5ReU50WnFKZVN1MkQxRnVmYVljY1g3M2QiLCJpYXQiOjE2OTU1NjU0MTEsImV4cCI6MTY5NTYwMTQxMSwic3ViIjoiYXV0aDB8NjFkMDg4YzZmNjRkNGEwMDcyYjIyYzE0IiwiYXRfaGFzaCI6InBMOU44dWt0LV8zZnpxaDVsd3dodXciLCJzaWQiOiJKTEljbHVEd1h3UlVvZnBlSzNxVXZpZ3BvRXZpRFJJYSIsIm5vbmNlIjoib3N0Rk1mWGszOFJrZ1V4cmFsYnJ0R250QmdYQUhoOHoifQ.Rqn2zDEk2PMrMV5ftwplYf_-7lD67jtf71CYfGE8diiqFYKjHKML5diSLnIyEvPRmWHRhQ3TQVC1x5v8LO9fjPvAD90ONUhwt2ZY9paRam4MkCdMQzrOgtMgE72_Jj9AXFPyqsw7Y9yz69vzLe3JZZvNFguDfsXLb4tjc6lGABj0-Mgwg_L-oWhYbFBjT3lygtp8PG1RXWMWwOKx5EN14-h_sBiEi9KKRsIhJ-cMCVc7D5zcAiudaoXVwRETjxrPtE7JJ190_fuMUoWNgQgOcHz-5s10TWBJbvL4GsMVyWtREpzIw5o4BX-MHHoam50W_jmvXDXB5kHR7GaroBL2yw",
+        "CloudFront-Forwarded-Proto": "https",
+        "CloudFront-Is-Desktop-Viewer": "true",
+        "CloudFront-Is-Mobile-Viewer": "false",
+        "CloudFront-Is-SmartTV-Viewer": "false",
+        "CloudFront-Is-Tablet-Viewer": "false",
+        "CloudFront-Viewer-ASN": "7552",
+        "CloudFront-Viewer-Country": "VN",
+        "Host": "hois2sns9l.execute-api.us-east-1.amazonaws.com",
+        "origin": "http://thienphuoc1990-serverless-fs-todo-app-static-site-dev.s3-website-us-east-1.amazonaws.com",
+        "Referer": "http://thienphuoc1990-serverless-fs-todo-app-static-site-dev.s3-website-us-east-1.amazonaws.com/",
+        "sec-ch-ua": "Chromium;v=116, Not)A;Brand;v=24, Google Chrome;v=116",
+        "sec-ch-ua-mobile": "?0",
+        "sec-ch-ua-platform": "Windows",
+        "sec-fetch-dest": "empty",
+        "sec-fetch-mode": "cors",
+        "sec-fetch-site": "cross-site",
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36",
+        "Via": "2.0 0fe7533c68b548d045ed5fdf284dc310.cloudfront.net (CloudFront)",
+        "X-Amz-Cf-Id": "hjrNSb_2Pkz-aGNY1EGrd05C3UCpU-wMg3_Wj_VK-9uGM-iMAoTP4g==",
+        "X-Amzn-Trace-Id": "Root=1-65104665-4f7f513b7660c05f2797c3f8",
+        "X-Forwarded-For": "171.225.249.54, 64.252.139.90",
+        "X-Forwarded-Port": "443",
+        "X-Forwarded-Proto": "https"
+    },
+    "multiValueHeaders": {
+        "Accept": [
+            "application/json, text/plain, */*"
+        ],
+        "Accept-Encoding": [
+            "gzip, deflate, br"
+        ],
+        "Accept-Language": [
+            "en-US,en;q=0.9"
+        ],
+        "Authorization": [
+            "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Im92TEtGQTA0YXk2S1VBd2EyQ2dFayJ9.eyJpc3MiOiJodHRwczovL2Rldi01ZW55d2hoYi51cy5hdXRoMC5jb20vIiwiYXVkIjoiMHFra0NRQm5ReU50WnFKZVN1MkQxRnVmYVljY1g3M2QiLCJpYXQiOjE2OTU1NjU0MTEsImV4cCI6MTY5NTYwMTQxMSwic3ViIjoiYXV0aDB8NjFkMDg4YzZmNjRkNGEwMDcyYjIyYzE0IiwiYXRfaGFzaCI6InBMOU44dWt0LV8zZnpxaDVsd3dodXciLCJzaWQiOiJKTEljbHVEd1h3UlVvZnBlSzNxVXZpZ3BvRXZpRFJJYSIsIm5vbmNlIjoib3N0Rk1mWGszOFJrZ1V4cmFsYnJ0R250QmdYQUhoOHoifQ.Rqn2zDEk2PMrMV5ftwplYf_-7lD67jtf71CYfGE8diiqFYKjHKML5diSLnIyEvPRmWHRhQ3TQVC1x5v8LO9fjPvAD90ONUhwt2ZY9paRam4MkCdMQzrOgtMgE72_Jj9AXFPyqsw7Y9yz69vzLe3JZZvNFguDfsXLb4tjc6lGABj0-Mgwg_L-oWhYbFBjT3lygtp8PG1RXWMWwOKx5EN14-h_sBiEi9KKRsIhJ-cMCVc7D5zcAiudaoXVwRETjxrPtE7JJ190_fuMUoWNgQgOcHz-5s10TWBJbvL4GsMVyWtREpzIw5o4BX-MHHoam50W_jmvXDXB5kHR7GaroBL2yw"
+        ],
+        "CloudFront-Forwarded-Proto": [
+            "https"
+        ],
+        "CloudFront-Is-Desktop-Viewer": [
+            "true"
+        ],
+        "CloudFront-Is-Mobile-Viewer": [
+            "false"
+        ],
+        "CloudFront-Is-SmartTV-Viewer": [
+            "false"
+        ],
+        "CloudFront-Is-Tablet-Viewer": [
+            "false"
+        ],
+        "CloudFront-Viewer-ASN": [
+            "7552"
+        ],
+        "CloudFront-Viewer-Country": [
+            "VN"
+        ],
+        "Host": [
+            "hois2sns9l.execute-api.us-east-1.amazonaws.com"
+        ],
+        "origin": [
+            "http://thienphuoc1990-serverless-fs-todo-app-static-site-dev.s3-website-us-east-1.amazonaws.com"
+        ],
+        "Referer": [
+            "http://thienphuoc1990-serverless-fs-todo-app-static-site-dev.s3-website-us-east-1.amazonaws.com/"
+        ],
+        "sec-ch-ua": [
+            "Chromium;v=116, Not)A;Brand;v=24, Google Chrome;v=116"
+        ],
+        "sec-ch-ua-mobile": [
+            "?0"
+        ],
+        "sec-ch-ua-platform": [
+            "Windows"
+        ],
+        "sec-fetch-dest": [
+            "empty"
+        ],
+        "sec-fetch-mode": [
+            "cors"
+        ],
+        "sec-fetch-site": [
+            "cross-site"
+        ],
+        "User-Agent": [
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36"
+        ],
+        "Via": [
+            "2.0 0fe7533c68b548d045ed5fdf284dc310.cloudfront.net (CloudFront)"
+        ],
+        "X-Amz-Cf-Id": [
+            "hjrNSb_2Pkz-aGNY1EGrd05C3UCpU-wMg3_Wj_VK-9uGM-iMAoTP4g=="
+        ],
+        "X-Amzn-Trace-Id": [
+            "Root=1-65104665-4f7f513b7660c05f2797c3f8"
+        ],
+        "X-Forwarded-For": [
+            "171.225.249.54, 64.252.139.90"
+        ],
+        "X-Forwarded-Port": [
+            "443"
+        ],
+        "X-Forwarded-Proto": [
+            "https"
+        ]
+    },
+    "queryStringParameters": null,
+    "multiValueQueryStringParameters": null,
+    "pathParameters": null,
+    "stageVariables": null,
+    "requestContext": {
+        "resourceId": "4w56oq",
+        "authorizer": {
+            "principalId": "auth0|61d088c6f64d4a0072b22c14",
+            "integrationLatency": 565
+        },
+        "resourcePath": "/todos",
+        "httpMethod": "GET",
+        "extendedRequestId": "Lw_v6G5nIAMF6wA=",
+        "requestTime": "24/Sep/2023:14:23:33 +0000",
+        "path": "/dev/todos",
+        "accountId": "655556811316",
+        "protocol": "HTTP/1.1",
+        "stage": "dev",
+        "domainPrefix": "hois2sns9l",
+        "requestTimeEpoch": 1695565413530,
+        "requestId": "fd9839de-b945-4b52-9dc1-a25bf47986d9",
+        "identity": {
+            "cognitoIdentityPoolId": null,
+            "accountId": null,
+            "cognitoIdentityId": null,
+            "caller": null,
+            "sourceIp": "171.225.249.54",
+            "principalOrgId": null,
+            "accessKey": null,
+            "cognitoAuthenticationType": null,
+            "cognitoAuthenticationProvider": null,
+            "userArn": null,
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36",
+            "user": null
+        },
+        "domainName": "hois2sns9l.execute-api.us-east-1.amazonaws.com",
+        "apiId": "hois2sns9l"
+    },
+    "body": null,
+    "isBase64Encoded": false
+}
