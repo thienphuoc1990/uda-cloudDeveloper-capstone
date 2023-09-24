@@ -57,6 +57,23 @@ export async function getTodosForUser(userId: string): Promise<TodoItem[]> {
     }).promise();
   }
   
+  export async function updateAttachmentUrlTodo(userId: string, todoId: string, attachmentUrl: string): Promise<void> {
+    await docClient.update({
+      TableName: todosTable,
+      Key: {
+        userId: userId,
+        todoId: todoId,
+      },
+      UpdateExpression: "set #attachmentUrl = :attachmentUrl",
+      ExpressionAttributeNames: {
+        "#attachmentUrl": "attachmentUrl",
+      },
+      ExpressionAttributeValues: {
+        ":attachmentUrl": attachmentUrl,
+      }
+    }).promise();
+  }
+  
   export async function deleteTodo(userId: string, todoId: string): Promise<void> {
     await docClient.delete({
       TableName: todosTable,
