@@ -48,43 +48,14 @@ custom:
   s3Sync:
     - bucketName: ${self:provider.environment.STATIC_SITE_S3_BUCKET}
       localDir: src/frontend/build/
+      
   webpack:
     webpackConfig: "webpack.backend.config.js"
-
-  staticSiteBucketUrl:
-    us-east-1:
-      # us-east-1 uses a different URL format than the other regions
-      Fn::Join:
-        - ""
-        - - https://s3.amazonaws.com/
-          - Ref: StaticSiteBucket
-    default:
-      # All other regions
-      Fn::Join:
-        - ""
-        - - https://s3-
-          - Ref: AWS::Region
-          - .amazonaws.com/
-          - Ref: StaticSiteBucket
 
   scripts:
     hooks:
       # Build the client-side script before packaging backend code
       package:initialize: "cd src/frontend && npm install && npm run build"
-
-  assets:
-    # Automatically copy distribution folder to S3 stopped working; do it manually (see `scripts.hooks.deploy:finalize`)
-    auto: false
-    targets:
-      - bucket:
-          Ref: StaticSiteBucket
-        acl: public-read
-        files:
-          - source: src/frontend/build/
-            headers:
-              CacheControl: max-age=31104000 # 1 year
-            globs:
-              - "**/*"
 
 functions:
   Auth:
