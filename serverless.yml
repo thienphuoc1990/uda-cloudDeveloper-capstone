@@ -6,6 +6,8 @@ plugins:
   - serverless-webpack
   - serverless-iam-roles-per-function
   - serverless-plugin-tracing
+  - serverless-s3-sync
+  - serverless-plugin-scripts
 
 provider:
   name: aws
@@ -24,7 +26,8 @@ provider:
   environment:
     TODOS_TABLE: Todos-${self:provider.stage}
     TODOS_CREATED_AT_INDEX: CreatedAtIndex
-    ATTACHMENT_S3_BUCKET: thienphuoc1990-serverless-fs-todo-app-${self:provider.stage}
+    ATTACHMENT_S3_BUCKET: thienphuoc1990-serverless-fs-todo-app-image-${self:provider.stage}
+    STATIC_SITE_S3_BUCKET: thienphuoc1990-serverless-fs-todo-app-static-site-${self:provider.stage}
     SIGNED_URL_EXPIRATION: 300
     AUTH0_APP_DOMAIN: dev-5enywhhb.us.auth0.com
 
@@ -42,8 +45,46 @@ provider:
           Resource: "*"
 
 custom:
+  s3Sync:
+    - bucketName: ${self:provider.environment.STATIC_SITE_S3_BUCKET}
+      localDir: src/frontend/build/
   webpack:
     webpackConfig: "webpack.backend.config.js"
+
+  staticSiteBucketUrl:
+    us-east-1:
+      # us-east-1 uses a different URL format than the other regions
+      Fn::Join:
+        - ""
+        - - https://s3.amazonaws.com/
+          - Ref: StaticSiteBucket
+    default:
+      # All other regions
+      Fn::Join:
+        - ""
+        - - https://s3-
+          - Ref: AWS::Region
+          - .amazonaws.com/
+          - Ref: StaticSiteBucket
+
+  scripts:
+    hooks:
+      # Build the client-side script before packaging backend code
+      package:initialize: "cd src/frontend && npm install && npm run build"
+
+  assets:
+    # Automatically copy distribution folder to S3 stopped working; do it manually (see `scripts.hooks.deploy:finalize`)
+    auto: false
+    targets:
+      - bucket:
+          Ref: StaticSiteBucket
+        acl: public-read
+        files:
+          - source: src/frontend/build/
+            headers:
+              CacheControl: max-age=31104000 # 1 year
+            globs:
+              - "**/*"
 
 functions:
   Auth:
@@ -133,7 +174,6 @@ functions:
 
 resources:
   Resources:
-    # Add necessary AWS resources. You will need at least the following AWS resources
     GatewayResponseDefault4XX:
       Type: AWS::ApiGateway::GatewayResponse
       Properties:
@@ -208,3 +248,43 @@ resources:
               Action: 's3:GetObject'
               Resource: 'arn:aws:s3:::${self:provider.environment.ATTACHMENT_S3_BUCKET}/*'
         Bucket: !Ref AttachmentsBucket
+
+    # S3 Bucket for the distribution bundles
+    StaticSiteBucket:
+      Type: AWS::S3::Bucket
+      DeletionPolicy: Delete
+      Properties:
+        BucketName: ${self:provider.environment.STATIC_SITE_S3_BUCKET}
+        WebsiteConfiguration:
+          IndexDocument: index.html
+        PublicAccessBlockConfiguration:
+          BlockPublicAcls: false
+          BlockPublicPolicy: false
+          IgnorePublicAcls: false
+          RestrictPublicBuckets: false
+
+    StaticSiteS3BucketPolicy:
+      Type: AWS::S3::BucketPolicy
+      Properties:
+        Bucket: !Ref StaticSiteBucket
+        PolicyDocument:
+          Statement:
+            - Sid: PublicReadForGetBucketObjects
+              Effect: Allow
+              Principal: "*"
+              Action:
+                - s3:GetObject
+              Resource: 'arn:aws:s3:::${self:provider.environment.STATIC_SITE_S3_BUCKET}/*'
+
+  Outputs:
+    ApiGatewayRestApi:
+      Description: API Gateway Endpoint
+      Value:
+        Ref: ApiGatewayRestApi
+    StaticSiteBucket:
+      Description: Distribution S3 Bucket
+      Value:
+        Ref: StaticSiteBucket
+    WebsiteURL:
+      Value: !GetAtt StaticSiteBucket.WebsiteURL
+      Description: URL for Static Site

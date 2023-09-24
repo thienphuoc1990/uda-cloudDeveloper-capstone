@@ -1,5 +1,7 @@
 // TODO: Once your application is deployed, copy an API id here so that the frontend could interact with it
-const apiId = 'u0t3uvf5j5';
+const apiId = 'hois2sns9l';
+// const authCallbackDomainAndPort = 'thienphuoc1990-serverless-fs-todo-app-static-site-dev.s3-website-us-east-1.amazonaws.com';
+const authCallbackDomainAndPort = 'localhost:3000';
 export const apiEndpoint = `https://${apiId}.execute-api.us-east-1.amazonaws.com/dev`
 
 export const authConfig = {
@@ -7,5 +9,5 @@ export const authConfig = {
   // domain: 'dev-nd9990-p4.us.auth0.com',
   domain: 'dev-5enywhhb.us.auth0.com',            // Auth0 domain
   clientId: '0qkkCQBnQyNtZqJeSu2D1FufaYccX73d',          // Auth0 client id
-  callbackUrl: 'http://localhost:3000/callback'
+  callbackUrl: `http://${authCallbackDomainAndPort}/callback`,
 }
